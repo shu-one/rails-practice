@@ -18,11 +18,17 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # Allow DATABASE_URL to override all settings if provided
+  url: <%= ENV["DATABASE_URL"] %>
 
 
 development:
   <<: *default
-  database: rails_practice_development
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
+  port: <%= ENV.fetch("DB_PORT", 5432) %>
+  database: <%= ENV.fetch("DB_NAME", "rails_practice_development") %>
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -56,7 +62,11 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: rails_practice_test
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
+  port: <%= ENV.fetch("DB_PORT", 5432) %>
+  database: <%= ENV.fetch("DB_NAME_TEST", "rails_practice_test") %>
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -87,9 +97,11 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: rails_practice_production
-    username: rails_practice
-    password: <%= ENV["RAILS_PRACTICE_DATABASE_PASSWORD"] %>
+    host: <%= ENV.fetch("DB_HOST", "localhost") %>
+    port: <%= ENV.fetch("DB_PORT", 5432) %>
+    database: <%= ENV.fetch("DB_NAME_PRODUCTION", "rails_practice_production") %>
+    username: <%= ENV.fetch("DB_USER", "rails_practice") %>
+    password: <%= ENV["DB_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: rails_practice_production_cache
