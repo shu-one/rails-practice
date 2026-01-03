@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_03_103536) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_03_114445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "credentials", id: false, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "login_id", limit: 64
+    t.string "password", limit: 256
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_credentials_on_user_id"
+  end
 
   create_table "users", id: false, force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -22,4 +32,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_03_103536) do
     t.string "user_name", limit: 32
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
+
+  add_foreign_key "credentials", "users", primary_key: "user_id"
 end
