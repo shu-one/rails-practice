@@ -7,7 +7,7 @@
     "defaults"
   ],
   "dependencies": {
-    "@swc/core": "^1.15.7",
+    "@swc/core": "^1.15.8",
     "compression-webpack-plugin": "^11.1.0",
     "css-loader": "^7.1.2",
     "mini-css-extract-plugin": "^2.9.4",
