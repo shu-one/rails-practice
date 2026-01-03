@@ -6,6 +6,9 @@ const webpackConfig = generateWebpackConfig()
 const customConfig = {
   resolve: {
     extensions: ['.ts', '.tsx']
+  },
+  devServer: {
+    allowedHosts: 'all'
   }
 }
 
