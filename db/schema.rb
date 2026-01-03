@@ -24,13 +24,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_03_114445) do
     t.index ["user_id"], name: "index_credentials_on_user_id"
   end
 
-  create_table "users", id: false, force: :cascade do |t|
+  create_table "users", primary_key: "user_id", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "deleted_at", precision: nil
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.string "user_name", limit: 32
-    t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
   add_foreign_key "credentials", "users", primary_key: "user_id"
