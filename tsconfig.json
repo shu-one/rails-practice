@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "lib": [
       "dom",
       "dom.iterable",
@@ -10,7 +10,6 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "fallbackPolling": "dynamicPriority",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -23,8 +22,7 @@
     "baseUrl": ".",
     "paths": {
       "*": [
-        "app/javascript/*",
-        "node_modules/*"
+        "app/javascript/*"
       ]
     }
   },
