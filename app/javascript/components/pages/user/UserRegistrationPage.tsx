@@ -2,10 +2,12 @@ import {Box, Button, Field, HStack} from "@chakra-ui/react";
 import {FlushedInputText} from "components/atoms/input/text/FlushedInputText";
 
 export function UserRegistrationPage() {
+  const authenticityToken = document.getElementById('root')?.getAttribute('data-authenticity-token') || '';
+
   return (
     <>
       <form action="/user/create" method="POST">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+        <input type="hidden" name="authenticity_token" value={authenticityToken}/>
         <Field.Root>
           <HStack>
             <Box w={"120px"}>
