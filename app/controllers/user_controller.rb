@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  skip_before_action :authenticate_user, only: [ :new, :create ]
+
   def new
   end
 
@@ -19,7 +21,7 @@ class UserController < ApplicationController
         expires: 24.hours.from_now
       }
       # TODO: 登録成功後の遷移先が決まったら修正する
-      redirect_to user_new_path, notice: "ユーザ登録が完了しました"
+      redirect_to root_path, notice: "ユーザ登録が完了しました"
     else
       redirect_to user_new_path, alert: credential.errors.full_messages.join(", ")
     end
