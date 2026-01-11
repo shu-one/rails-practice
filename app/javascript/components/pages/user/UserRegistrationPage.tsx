@@ -1,11 +1,11 @@
-import {Box, Button, Field, HStack} from "@chakra-ui/react";
+import {Box, Button, ChakraProvider, defaultSystem, Field, HStack} from "@chakra-ui/react";
 import {FlushedInputText} from "components/atoms/input/text/FlushedInputText";
 
 export function UserRegistrationPage() {
   const authenticityToken = document.getElementById('root')?.getAttribute('data-authenticity-token') || '';
 
   return (
-    <>
+    <ChakraProvider value={defaultSystem}>
       <form action="/user/create" method="POST">
         <input type="hidden" name="authenticity_token" value={authenticityToken}/>
         <Field.Root>
@@ -49,6 +49,6 @@ export function UserRegistrationPage() {
           登録
         </Button>
       </form>
-    </>
+    </ChakraProvider>
   );
 }

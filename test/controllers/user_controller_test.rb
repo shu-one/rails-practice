@@ -12,6 +12,13 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to user_new_path
     assert_equal "ユーザ登録が完了しました", flash[:notice]
+    assert_not_nil cookies[:jwt]
+
+    # トークンの内容を検証
+    decoded_token = JsonWebToken.decode(cookies[:jwt])
+    assert_not_nil decoded_token
+    user = User.find_by(user_name: "testuser")
+    assert_equal user.id, decoded_token[:user_id]
   end
 
   test "should redirect on password mismatch" do

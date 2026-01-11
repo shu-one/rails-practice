@@ -63,3 +63,4 @@ group :test do
 end
 
 gem "shakapacker", "= 9.4"
+gem "jwt"

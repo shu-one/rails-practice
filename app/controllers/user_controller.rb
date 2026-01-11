@@ -11,7 +11,16 @@ class UserController < ApplicationController
       return
     end
 
-    unless credential.save
+    if credential.save
+      token = JsonWebToken.encode(user_id: user.id)
+      cookies[:jwt] = {
+        value: token,
+        httponly: true,
+        expires: 24.hours.from_now
+      }
+      # TODO: 登録成功後の遷移先が決まったら修正する
+      redirect_to user_new_path, notice: "ユーザ登録が完了しました"
+    else
       redirect_to user_new_path, alert: credential.errors.full_messages.join(", ")
     end
   end
