@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_id: 1
+  task_name: MyString
+  User: one
+  end_time: 2026-01-12 16:39:46
+  description: MyString
+  task_status_id: MyString
+  deleted_at: 2026-01-12 16:39:46
+
+two:
+  task_id: 1
+  task_name: MyString
+  User: two
+  end_time: 2026-01-12 16:39:46
+  description: MyString
+  task_status_id: MyString
+  deleted_at: 2026-01-12 16:39:46

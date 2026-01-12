@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_03_114445) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_12_073946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,6 +24,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_03_114445) do
     t.index ["user_id"], name: "index_credentials_on_user_id"
   end
 
+  create_table "tasks", primary_key: "task_id", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.string "description", limit: 1000
+    t.datetime "end_time", precision: nil
+    t.string "task_name", limit: 100
+    t.string "task_status_id", limit: 32
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "users", primary_key: "user_id", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "deleted_at", precision: nil
@@ -32,4 +44,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_03_114445) do
   end
 
   add_foreign_key "credentials", "users", primary_key: "user_id"
+  add_foreign_key "tasks", "users", primary_key: "user_id"
 end
