@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get "user/new"
   post "user/create"
   get "task/show"
-  get "task/index"
 
   # API
   get "api/task_status" => "task_status#index_api"
