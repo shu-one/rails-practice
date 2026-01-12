@@ -10,7 +10,7 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_difference ["User.count", "Credential.count"], 1 do
       post user_create_url, params: { loginId: "testuser", password: "password", confirmPassword: "password" }
     end
-    assert_redirected_to user_new_path
+    assert_redirected_to root_path
     assert_equal "ユーザ登録が完了しました", flash[:notice]
     assert_not_nil cookies[:jwt]
 
@@ -18,7 +18,7 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     decoded_token = JsonWebToken.decode(cookies[:jwt])
     assert_not_nil decoded_token
     user = User.find_by(user_name: "testuser")
-    assert_equal user.id, decoded_token[:user_id]
+    assert_equal user.user_id, decoded_token[:user_id]
   end
 
   test "should redirect on password mismatch" do

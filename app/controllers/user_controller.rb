@@ -14,7 +14,7 @@ class UserController < ApplicationController
     end
 
     if credential.save
-      token = JsonWebToken.encode(user_id: user.id)
+      token = JsonWebToken.encode(user_id: user.user_id)
       cookies[:jwt] = {
         value: token,
         httponly: true,

@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   # HTML
   get "user/new"
   post "user/create"
+  get "task/show"
+  get "task/index"
 
   # API
   get "api/task_status" => "task_status#index_api"
+  post "api/task/new" => "task#create_api"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
